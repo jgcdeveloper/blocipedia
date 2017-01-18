@@ -6,9 +6,28 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-10">
+      </div>
+
+      <div class="col-1">
+        <p>Profile</p>
+      </div>
+
+      <div class="col-1">
+        <p>Sign In</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <%= yield %>
 
 </body>
 </html>
