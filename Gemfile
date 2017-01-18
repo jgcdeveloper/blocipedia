@@ -25,6 +25,7 @@ group :development, :test do
 end
 
 gem 'jquery-rails'
+gem 'coffee-rails'
 gem 'turbolinks'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'bootstrap', '~> 4.0.0.alpha6'
