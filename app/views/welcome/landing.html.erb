@@ -1,11 +1,11 @@
 <div class="landing-top container-fluid">
   <div class="logo"> <%= image_tag("Logo.png", :size => "200") %> </div>
+
   <h2 class="blocipedia-title">Social Wikis in the Markdown Style </h2>
 </div>
 
 <div class="landing-middle container-fluid">
   <div class="row">
-
     <div class="col-3">
       <p></p>
     </div>
@@ -14,17 +14,22 @@
       <p>Create and Share Markdown Wiki's</p>
 
       <div class="row align-items-center">
-
-        <div class="col-5"> </div>
-
-        <div class="col-2">
-          <%= link_to "Sign In", wikis_index_path, :class => "btn btn-success" %>
+        <div class="col-5">
+          <p></p>
         </div>
 
-        <div class="col-5"> </div>
+        <div class="col-2">
+          <% if user_signed_in? %>
+            <%= link_to "Goto my Wikis", wikis_index_path, :class => "btn btn-primary" %>
+          <% else %>
+            <%= link_to "Sign In", wikis_index_path, :class => "btn btn-success" %>
+          <% end %>
+        </div>
 
+        <div class="col-5">
+          <p></p>
+        </div>
       </div>
-        <p></p>
     </div>
 
     <div class="col-3">
@@ -33,13 +38,10 @@
   </div>
 </div>
 
-<div class="landing-lower-middle container-fluid">
-
-</div>
+<div class="landing-lower-middle container-fluid"></div>
 
 <div class="landing-bottom container-fluid">
   <div class="row">
-
     <div class="col-2">
       <p></p>
     </div>
@@ -63,6 +65,5 @@
     <div class="col-2">
       <p></p>
     </div>
-
   </div>
 </div>

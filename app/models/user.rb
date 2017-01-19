@@ -1,3 +1,4 @@
+# This will handle user info via the devise gem
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
