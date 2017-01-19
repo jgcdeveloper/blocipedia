@@ -1,8 +1,4 @@
-# This is the welcome controller, which will handle index, signup, and about
+# This is the welcome controller, which will handle our landing page
 class WelcomeController < ApplicationController
-  def index; end
-
-  def signup; end
-
-  def about; end
+  def landing; end
 end

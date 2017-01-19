@@ -2,25 +2,10 @@ require 'rails_helper'
 
 RSpec.describe WelcomeController, type: :controller do
 
-  describe "GET #index" do
+  describe "GET #landing" do
     it "returns http success" do
-      get :index
+      get :landing
       expect(response).to have_http_status(:success)
     end
   end
-
-  describe "GET #signup" do
-    it "returns http success" do
-      get :signup
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #about" do
-    it "returns http success" do
-      get :about
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end

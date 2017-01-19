@@ -1,0 +1,5 @@
+# Add configuration values here, as shown below.
+
+SENDMAIL_USERNAME: "your_gmail_here@gmail.com"
+SENDMAIL_PASSWORD: "your_gmail_password"
+MAIL_HOST: "gmail.com"

@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
+  devise_for :users
 
-  get 'welcome/signup'
+  get 'wikis/index'
 
-  get 'welcome/about'
+  get 'wikis/about'
 
-  root 'welcome#signup'
+  get 'welcome/landing'
+
+  root 'welcome#landing'
 
 end
