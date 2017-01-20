@@ -33,9 +33,10 @@ RSpec.configure do |config|
 
   # Include the devise controller helper test methods
   config.include Devise::Test::ControllerHelpers, :type => :controller
-  config.extend ControllerMacros, :type => :controller
-  
   config.include Devise::Test::ControllerHelpers, :type => :view
+
+  # Include our controller login test module
+  config.extend ValidUserControllerHelper, :type => :controller
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

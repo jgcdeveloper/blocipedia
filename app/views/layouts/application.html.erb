@@ -28,7 +28,9 @@
         <div class="col-1 profile-link">
           <% if user_signed_in? %>
             <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
-            <% end %>
+          <% else %>
+            <%= link_to('About Blocipedia', welcome_about_path) %>
+          <% end %>
         </div>
       </div>
     </div>
