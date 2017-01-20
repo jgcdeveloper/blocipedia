@@ -10,6 +10,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
@@ -21,7 +22,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'spring'
-  gem 'web-console', '~> 2.0'
 end
 
 gem 'jquery-rails'
