@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'wikis/index'
 
-  get 'wikis/about'
+  get 'welcome/about'
 
   get 'welcome/landing'
 
