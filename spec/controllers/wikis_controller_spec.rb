@@ -13,10 +13,22 @@ RSpec.describe WikisController, type: :controller do
     context "User is logged in" do
       # Login user before performing tests
       login_user
+      let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New Wiki Body", private: false, user: nil) }
 
-      it "returns http success" do
+
+      it "returns HTTP success" do
         get :index
         expect(response).to have_http_status(:success)
+      end
+
+      it "renders template index" do
+        get :index
+        expect(response).to render_template :index
+      end
+
+      it "assigns [my_wiki] to @wikis" do
+        get :index
+        expect(assigns(:wikis)).to eq([my_wiki])
       end
     end
   end
