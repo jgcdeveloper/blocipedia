@@ -1,4 +1,4 @@
-# This controller will redirect to login, and handle our RESTful routes
+# This controller will trigger login, and handle our wiki CRUD methods
 class WikisController < ApplicationController
   before_action :authenticate_user!
   before_action :create_new_wiki, only: [:new, :create]
@@ -9,11 +9,11 @@ class WikisController < ApplicationController
   end
 
   def show
-    #See before_action
+    # See before_action
   end
 
   def new
-    #see before_action
+    # see before_action
   end
 
   def create
@@ -29,7 +29,7 @@ class WikisController < ApplicationController
   end
 
   def edit
-    #See before_action
+    # See before_action
   end
 
   def update
@@ -45,7 +45,6 @@ class WikisController < ApplicationController
   end
 
   def destroy
-
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
       redirect_to wikis_path
