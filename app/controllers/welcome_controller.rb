@@ -1,4 +1,4 @@
-# This is the welcome controller, which will handle our landing page
+# This is the welcome controller, which will handle our landing and about pages
 class WelcomeController < ApplicationController
   def landing; end
 

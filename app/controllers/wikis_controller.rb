@@ -1,4 +1,4 @@
-# This controller will trigger login, and handle our wiki CRUD methods
+# This controller will redirect to login and handle our wiki CRUD methods
 class WikisController < ApplicationController
   before_action :authenticate_user!
 
@@ -19,10 +19,10 @@ class WikisController < ApplicationController
     set_wiki_parameters
 
     if @wiki.save
-      flash[:notice] = 'Wiki Saved!'
+      flash[:notice] = wiki_instantiate_confirmed
       redirect_to @wiki
     else
-      flash.now[:alert] = 'Wiki could not be saved... Please confirm adequate characters and try again!'
+      flash.now[:alert] = wiki_instantiate_denied
       render :new
     end
   end
@@ -36,10 +36,10 @@ class WikisController < ApplicationController
     set_wiki_parameters
 
     if @wiki.save
-      flash[:notice] = 'Wiki Updated!'
+      flash[:notice] = wiki_update_confirmed
       redirect_to @wiki
     else
-      flash.now[:alert] = 'Wiki could not be updated... Please confirm adequate characters and try again!'
+      flash.now[:alert] = wiki_update_denied
       render :new
     end
   end
@@ -48,10 +48,10 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
 
     if @wiki.destroy
-      flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
+      flash[:notice] = wiki_destroy_confirmed
       redirect_to wikis_path
     else
-      flash.now[:alert] = 'There was an error deleting the wiki.'
+      flash.now[:alert] = wiki_destroy_denied
       render :show
     end
   end
@@ -63,4 +63,33 @@ class WikisController < ApplicationController
     @wiki.body = params[:wiki][:body]
     @wiki.private = params[:wiki][:private]
   end
+
+  #Messages for our alerts
+  def wiki_instantiate_confirmed
+    "Wiki has been created!"
+  end
+
+
+  def wiki_instantiate_denied
+    "Error - Wiki could not be created...
+    Please confirm character lengths and try again!"
+  end
+
+  def wiki_update_confirmed
+    "Wiki has been updated!"
+  end
+
+  def wiki_update_denied
+    "Error - Wiki could not be updated...
+    Please confirm character lengths and try again!"
+  end
+
+  def wiki_destroy_confirmed
+    "\"#{@wiki.title}\" was deleted successfully."
+  end
+
+  def wiki_destroy_denied
+    'There was an error deleting the wiki.'
+  end
+
 end
