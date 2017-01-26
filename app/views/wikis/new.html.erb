@@ -1,27 +1,3 @@
 <h1>New Wiki</h1>
 
- <div class="row">
-   <div class="col-md-8">
-     <%= form_for @wiki do |w| %>
-       <div class="form-group">
-         <%= w.label :title %>
-         <%= w.text_field :title, class: 'form-control', placeholder: "Enter Wiki Title (Minimum 5 Characters)" %>
-       </div>
-       <div class="form-group">
-         <%= w.label :body %>
-         <%= w.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter Wiki Body (Minimum 20 Characters)" %>
-       </div>
-       <div class="form-group">
-         <%= w.submit "Save", class: 'btn btn-success' %>
-       </div>
-     <% end %>
-   </div>
-   <div class="col-md-4">
-      <p>Guidelines for Wiki</p>
-      <ul>
-         <li>Information will be checked. Please keep to facts.</li>
-         <li>Cite your sources.</li>
-         <li>Purposely misleading information is subject to user ban</li>
-      </ul>
-   </div>
- </div>
+<%= render partial: 'wikiform', locals: { wiki: @wiki } %> 
