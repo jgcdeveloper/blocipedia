@@ -2,11 +2,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get 'wikis/index'
+  resources :wikis
 
-  get 'wikis/about'
-
-  get 'welcome/landing'
+  get 'welcome/about'
 
   root 'welcome#landing'
 
