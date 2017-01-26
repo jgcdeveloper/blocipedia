@@ -1,50 +1,52 @@
 # This controller will trigger login, and handle our wiki CRUD methods
 class WikisController < ApplicationController
   before_action :authenticate_user!
-  before_action :create_new_wiki, only: [:new, :create]
-  before_action :find_wiki, only: [:show, :edit, :update, :destroy]
 
   def index
     @wikis = Wiki.all
   end
 
   def show
-    # See before_action
+    @wiki = Wiki.find(params[:id])
   end
 
   def new
-    # see before_action
+    @wiki = Wiki.new
   end
 
   def create
+    @wiki = Wiki.new
     set_wiki_parameters
 
     if @wiki.save
-      flash[:notice] = 'Wiki was saved'
+      flash[:notice] = 'Wiki Saved!'
       redirect_to @wiki
     else
-      flash.now[:alert] = 'Wiki could not be saved, please try again'
+      flash.now[:alert] = 'Wiki could not be saved... Please confirm adequate characters and try again!'
       render :new
     end
   end
 
   def edit
-    # See before_action
+    @wiki = Wiki.find(params[:id])
   end
 
   def update
+    @wiki = Wiki.find(params[:id])
     set_wiki_parameters
 
     if @wiki.save
-      flash[:notice] = 'Wiki was updated'
+      flash[:notice] = 'Wiki Updated!'
       redirect_to @wiki
     else
-      flash.now[:alert] = 'Wiki could not be updated, please try again'
+      flash.now[:alert] = 'Wiki could not be updated... Please confirm adequate characters and try again!'
       render :new
     end
   end
 
   def destroy
+    @wiki = Wiki.find(params[:id])
+
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
       redirect_to wikis_path
@@ -55,14 +57,6 @@ class WikisController < ApplicationController
   end
 
   private
-
-  def create_new_wiki
-    @wiki = Wiki.new
-  end
-
-  def find_wiki
-    @wiki = Wiki.find(params[:id])
-  end
 
   def set_wiki_parameters
     @wiki.title = params[:wiki][:title]
