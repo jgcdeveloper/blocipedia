@@ -4,7 +4,7 @@ class CreateWikis < ActiveRecord::Migration
       t.string :title, null: false
       t.text :body, null: false
       t.boolean :private, default: false, null: false
-      t.references :user, index: true, foreign_key: true
+      t.belongs_to :user, index: true, foreign_key: true
 
       t.timestamps null: false
     end

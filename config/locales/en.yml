@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+ pundit:
+   default: 'You do not have permission to do that.'
+   post_policy:
+     update?: 'You cannot edit this post!'
+     create?: 'You cannot create posts!'
+     destroy?: 'You do not have permission to delete posts!'
