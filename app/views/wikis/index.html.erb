@@ -1,13 +1,13 @@
 <h1>Wiki Index</h1>
 <div class="row media">
-  <div class="col-md-10 media-body">
+  <div class="col-md-11 media-body">
     <% @wikis.each do |wiki| %>
       <h5 class="media-heading">
         <%= link_to wiki.title, wiki %>
       </h5>
     <% end %>
   </div>
-  <div class="col-md-2">
-    <%= link_to "New Wiki", new_wiki_path, class: "btn btn-success" %>
+  <div class="col-md-1">
+    <%= render partial: 'new_button', locals: { wiki: @wiki } %>
   </div>
 </div>

@@ -1,18 +1,24 @@
+# This is the authorization policy for our wiki
 class WikiPolicy < ApplicationPolicy
-
   attr_reader :user, :wiki
 
-  def initialize(user, post)
+  def initialize(user, wiki)
     @user = user
-    @post = post
+    @wiki = wiki
   end
 
   def destroy?
     user.admin?
+    wiki.user_id == user.id
   end
 
   def update?
-    user.standard?
+    if wiki.private
+      user.premium?
+      wiki.user_id == user.id
+    else
+      user.standard?
+    end
   end
 
   def create?

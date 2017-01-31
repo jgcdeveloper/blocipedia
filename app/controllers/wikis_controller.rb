@@ -72,7 +72,6 @@ class WikisController < ApplicationController
     "Wiki has been created!"
   end
 
-
   def wiki_instantiate_denied
     "Error - Wiki could not be created...
     Please confirm character lengths and try again!"

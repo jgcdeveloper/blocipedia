@@ -1,3 +1,4 @@
+# This is the ApplicationPolicy for the Pundit Authorization Gem
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -11,7 +12,7 @@ class ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    scope.where(id: record.id).exists?
   end
 
   def create?
