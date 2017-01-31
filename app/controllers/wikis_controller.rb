@@ -67,9 +67,9 @@ class WikisController < ApplicationController
     @wiki.user = current_user
   end
 
-  #Messages for our alerts
+  # Messages for our alerts
   def wiki_instantiate_confirmed
-    "Wiki has been created!"
+    'Wiki has been created!'
   end
 
   def wiki_instantiate_denied
@@ -78,7 +78,7 @@ class WikisController < ApplicationController
   end
 
   def wiki_update_confirmed
-    "Wiki has been updated!"
+    'Wiki has been updated!'
   end
 
   def wiki_update_denied
@@ -93,5 +93,4 @@ class WikisController < ApplicationController
   def wiki_destroy_denied
     'There was an error deleting the wiki.'
   end
-
 end
