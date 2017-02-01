@@ -15,8 +15,8 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new
-    set_wiki_parameters
+    @wiki = Wiki.new(wiki_parameters)
+    set_new_wiki_user
 
     if @wiki.save
       flash[:notice] = wiki_instantiate_confirmed
@@ -29,13 +29,13 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
-    set_wiki_parameters
 
-    if @wiki.save
+    if @wiki.update(wiki_parameters)
       flash[:notice] = wiki_update_confirmed
       redirect_to @wiki
     else
@@ -46,6 +46,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
 
     if @wiki.destroy
       flash[:notice] = wiki_destroy_confirmed
@@ -58,17 +59,18 @@ class WikisController < ApplicationController
 
   private
 
-  def set_wiki_parameters
-    @wiki.title = params[:wiki][:title]
-    @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+  def wiki_parameters
+    params.require(:wiki).permit(:title, :body, :private)
   end
 
-  #Messages for our alerts
+  def set_new_wiki_user
+    @wiki.user = current_user
+  end
+
+  # Messages for our alerts
   def wiki_instantiate_confirmed
-    "Wiki has been created!"
+    'Wiki has been created!'
   end
-
 
   def wiki_instantiate_denied
     "Error - Wiki could not be created...
@@ -76,7 +78,7 @@ class WikisController < ApplicationController
   end
 
   def wiki_update_confirmed
-    "Wiki has been updated!"
+    'Wiki has been updated!'
   end
 
   def wiki_update_denied
@@ -91,5 +93,4 @@ class WikisController < ApplicationController
   def wiki_destroy_denied
     'There was an error deleting the wiki.'
   end
-
 end

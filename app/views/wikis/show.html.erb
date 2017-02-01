@@ -6,8 +6,8 @@
     <p><br /><%= @wiki.body %></p>
   </div>
   <div class="col-md-1">
-    <%= link_to "Edit Wiki", edit_wiki_path(@wiki), class: 'btn btn-success' %>
+    <%= render partial: 'edit_button', locals: { wiki: @wiki } %>
     <p></p>
-    <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this wiki?'} %>
+    <%= render partial: 'delete_button', locals: { wiki: @wiki } %>
   </div>
 </div>
