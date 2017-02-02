@@ -16,6 +16,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(wiki_parameters)
+    authorize @wiki
     set_new_wiki_user
 
     if @wiki.save
@@ -29,11 +30,11 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
   end
 
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
 
     if @wiki.update(wiki_parameters)
       flash[:notice] = wiki_update_confirmed

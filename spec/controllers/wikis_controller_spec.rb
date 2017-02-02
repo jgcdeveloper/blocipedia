@@ -13,7 +13,7 @@ RSpec.describe WikisController, type: :controller do
     context "User is logged in" do
       # Login user before performing tests
       login_user
-      let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New wiki instance for tesing", private: false) }
+      let(:my_wiki) { FactoryGirl.create(:wiki)}
 
 
       it "returns HTTP success" do
@@ -56,16 +56,16 @@ RSpec.describe WikisController, type: :controller do
     login_user
 
     it "increases the number of wikis by 1" do
-      expect{ post :create, wiki: {title: Faker::Lorem.sentence(1, word_count=4), body: Faker::Lorem.paragraph(2), private: false}}.to change(Wiki,:count).by(1)
+      expect{ post :create, wiki: {title: Faker::Lorem.sentence(1, word_count = 5), body: Faker::Lorem.paragraph(2), private: false}}.to change(Wiki,:count).by(1)
     end
 
     it "assigns the new wiki to @wikis" do
-      post :create, wiki: {title: Faker::Lorem.sentence(1, word_count=4), body: Faker::Lorem.paragraph(2), private: false}
+      post :create, wiki: {title: Faker::Lorem.sentence(1, word_count = 5), body: Faker::Lorem.paragraph(2), private: false}
       expect(assigns(:wiki)).to eq Wiki.last
     end
 
     it "redirects to the new post" do
-      post :create, wiki: {title: Faker::Lorem.sentence(1, word_count=4), body: Faker::Lorem.paragraph(2), private: false}
+      post :create, wiki: {title: Faker::Lorem.sentence(1, word_count = 5), body: Faker::Lorem.paragraph(2), private: false}
       expect(response).to redirect_to Wiki.last
     end
 
@@ -73,7 +73,7 @@ RSpec.describe WikisController, type: :controller do
 
   describe "GET show" do
     login_user
-    let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New wiki instance for tesing", private: false) }
+    let(:my_wiki) { FactoryGirl.create(:wiki)}
 
     it "returns HTTP success" do
       get :show, {id: my_wiki.id}
@@ -93,7 +93,7 @@ RSpec.describe WikisController, type: :controller do
 
   describe "GET edit" do
     login_user
-    let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New wiki instance for tesing", private: false) }
+    let(:my_wiki) { FactoryGirl.create(:wiki)}
 
     it "returns HTTP success" do
       get :edit, {id: my_wiki.id}
@@ -116,7 +116,7 @@ RSpec.describe WikisController, type: :controller do
 
   describe "PUT update" do
     login_user
-    let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New wiki instance for tesing", private: false) }
+    let(:my_wiki) { FactoryGirl.create(:wiki)}
 
     it "updates the wiki with expected attributes" do
       new_title = Faker::Lorem.sentence(1)
@@ -128,7 +128,7 @@ RSpec.describe WikisController, type: :controller do
 
   describe "DELETE destroy" do
     login_user
-    let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New wiki instance for tesing", private: false) }
+    let(:my_wiki) { FactoryGirl.create(:wiki)}
 
     it "deletes the post" do
       delete :destroy, {id: my_wiki}

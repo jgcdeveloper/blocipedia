@@ -7,21 +7,37 @@ class WikiPolicy < ApplicationPolicy
     @wiki = wiki
   end
 
-  def destroy?
-    user.admin?
-    wiki.user_id == user.id
+  def create?
+    create_eligable_roles
   end
 
   def update?
-    if wiki.private
-      user.premium?
-      wiki.user_id == user.id
-    else
-      user.standard?
-    end
+    update_eligable_roles
   end
 
-  def create?
-    user.standard?
+  def destroy?
+    destroy_eligable_roles
+  end
+
+  private
+
+  # Currently standard, premium, and admin roles have create permission
+  def create_eligable_roles
+    @user.role.eql? 'standard'
+    @user.role.eql? 'premium'
+    @user.role.eql? 'admin'
+  end
+
+  # Currently standard, premium, and admin roles have update permission
+  def update_eligable_roles
+    @user.role.eql? 'standard'
+    @user.role.eql? 'premium'
+    @user.role.eql? 'admin'
+  end
+
+  # Currently admin roles and wiki owner have delete permission
+  def destroy_eligable_roles
+    @user.role.eql? 'admin'
+    @wiki.user_id == @user.id
   end
 end

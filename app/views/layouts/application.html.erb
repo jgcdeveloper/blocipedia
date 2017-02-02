@@ -10,20 +10,26 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-10">
+        <div class="col-9">
           <%= render partial: '/layouts/alerts' %>
         </div>
 
-        <div class="col-1 gem_display">
+        <div class="col-2 user_display">
           <% if user_signed_in? %>
-            <!--To be replaced with a helper to determine which gem to show and link to profile-->
-            <div class="diamond_icon">
-              <%= image_tag("black-diamond.png", :size => "24x20") %>
+            <div class="container user-display">
+              <div class="row">
+                <div class="diamond">
+                  <%= user_gem_display %>
+                </div>
+                <div class="user-email">
+                  <p><%= current_user.email %> </p>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>
 
-        <div class="col-1 profile-link">
+        <div class="col-1 about-link">
           <% if user_signed_in? %>
             <%= link_to('Sign Out', destroy_user_session_path, :method => :delete) %>
           <% else %>

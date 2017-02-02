@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  enum role: [:admin, :standard, :premium]
+
   private
 
   def set_user_default
-    self.standard = true
+    self.role = 'standard'
   end
 end
