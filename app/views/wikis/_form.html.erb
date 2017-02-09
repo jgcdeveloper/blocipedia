@@ -13,9 +13,13 @@
       </div>
 
       <div>
-         <%= w.label :private do %>
-         <%= w.check_box :private %> Private Wiki?
-         <% end %>
+        <%if ( (type == "new") && (current_user.premium? || current_user.admin? ) ) ||
+             ( (type == "edit") && (current_user.premium? && 'wiki.user_id' == current_user.id) ) ||
+             ( (type == "edit") && current_user.admin?) %>
+          <%= w.label :private do %>
+          <%= w.check_box :private %> Private Wiki?
+          <% end %>
+        <% end %>
       </div>
 
       <div class="form-group">

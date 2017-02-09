@@ -27,5 +27,5 @@ puts "Seeding Wikis"
 end
 
 puts "Seeding Finished!"
-puts "#{User.count} users seeded (including 1 admin)"
+puts "#{User.count} users seeded"
 puts "#{Wiki.count} wikis seeded"

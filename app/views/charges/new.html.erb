@@ -1,4 +1,12 @@
 <%= form_tag charges_path do %>
-  <h4>Click the button!</h4>
+  <p>Now accepting Visa, MasterCard, and American Express</p>
   <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
+  <div class="container-fluid">
+    <br />
+    <div class="row">
+      <div class="col-1"> <%= image_tag("visa", :size => "96x60") %> </div>
+      <div class="col-1"> <%= image_tag("mastercard", :size => "96x60") %> </div>
+      <div class="col-1"> <%= image_tag("amex", :size => "96x60") %> </div>
+    </div>
+  </div>
 <% end %>

@@ -3,11 +3,13 @@ class ChargesController < ApplicationController
   rescue_from ActionController::RedirectBackError, with: :redirect_to_default
 
   def new
+
     @stripe_btn_data = {
      key: "#{ Rails.configuration.stripe[:publishable_key] }",
-     description: "Blocipedia Premium User -> #{current_user.email}",
-     amount: 1500
+     description: "Blocipedia Premium Upgrade",
+     amount: upgrade_cost
    }
+
   end
 
   def create
@@ -20,14 +22,14 @@ class ChargesController < ApplicationController
 
     charge = Stripe::Charge::create(
       customer: customer.id,
-      amount: 1500,
+      amount: upgrade_cost,
       description: 'Premium Upgrade -> #{current_user.email}',
       currency: 'usd'
     )
 
     flash[:notice] = "Success - Thank You for Upgrading!"
+    perform_upgrade
     redirect_to wikis_path
-
 
     rescue Stripe::CardError => e
     flash[:alert] = e.message
@@ -36,6 +38,15 @@ class ChargesController < ApplicationController
   end
 
   private
+
+  def upgrade_cost
+    # Amount of an upgrade in cents (USD)
+    1500
+  end
+
+  def perform_upgrade
+    current_user.upgrade_user
+  end
 
   def redirect_to_default
     redirect_to wikis_path
