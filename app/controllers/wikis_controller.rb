@@ -19,8 +19,7 @@ class WikisController < ApplicationController
     @user = current_user
     @wiki = @user.wikis.new(wiki_parameters)
     authorize @wiki
-    #set_new_wiki_user
-
+  
     if @wiki.save
       flash[:notice] = wiki_instantiate_confirmed
       redirect_to @wiki
