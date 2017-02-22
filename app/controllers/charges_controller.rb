@@ -15,9 +15,10 @@ class ChargesController < ApplicationController
 
   def create
 
+    @user = current_user
     # Create a stripe customer for our charge
     customer = Stripe::Customer.create(
-      email: current_user.email,
+      email: @user.email,
       card: params[:stripeToken]
     )
 
@@ -45,7 +46,7 @@ class ChargesController < ApplicationController
   end
 
   def perform_upgrade
-    current_user.upgrade_user
+    @user.upgrade_user
   end
 
   def redirect_to_default
