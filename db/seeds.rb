@@ -2,7 +2,7 @@
 
 puts "Seeding Users"
 
-10.times do
+0.times do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
@@ -17,7 +17,7 @@ users = User.all
 puts "Seeding Wikis"
 
 # Create 20 Random Wikis.
-20.times do
+0.times do
   Wiki.create!(
     title: Faker::Lorem.sentence(6),
     body: Faker::Lorem.paragraph(4),
