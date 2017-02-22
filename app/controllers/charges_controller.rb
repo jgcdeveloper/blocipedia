@@ -1,6 +1,7 @@
 # This controller will handle our stripe API
 class ChargesController < ApplicationController
   rescue_from ActionController::RedirectBackError, with: :redirect_to_default
+  CHARGES_COST = 1_500
 
   def new
 
@@ -29,7 +30,7 @@ class ChargesController < ApplicationController
 
     flash[:notice] = "Success - Thank You for Upgrading!"
     perform_upgrade
-    redirect_to wikis_path
+    redirect_to_default
 
     rescue Stripe::CardError => e
     flash[:alert] = e.message
@@ -40,8 +41,7 @@ class ChargesController < ApplicationController
   private
 
   def upgrade_cost
-    # Amount of an upgrade in cents (USD)
-    1500
+    CHARGES_COST
   end
 
   def perform_upgrade

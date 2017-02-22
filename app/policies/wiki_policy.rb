@@ -24,21 +24,21 @@ class WikiPolicy < ApplicationPolicy
 
   # Currently standard, premium, and admin roles have create permission
   def create_eligable_roles
-    @user.premium? or
-    @user.admin? or
+    @user.premium? ||
+    @user.admin? ||
     @user.standard?
   end
 
   # Currently standard, premium, and admin roles have update permission
   def update_eligable_roles
-    @user.premium? or
-    @user.admin? or
+    @user.premium? ||
+    @user.admin? ||
     @user.standard?
   end
 
   # Currently admin roles and wiki owner have delete permission
   def destroy_eligable_roles
-    @user.admin? or
+    @user.admin? ||
     @wiki.user_id == @user.id
   end
 end

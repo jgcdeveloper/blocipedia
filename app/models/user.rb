@@ -1,7 +1,7 @@
 # This will handle user info via the devise gem
 class User < ActiveRecord::Base
   has_many :wikis, dependent: :destroy
-  after_initialize :set_default_role, if: :new_record?
+  after_initialize :set_role_to_standard, if: :new_record?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -22,16 +22,13 @@ class User < ActiveRecord::Base
 
   private
 
-  def set_default_role
-  end
-
   # Note that 1 represents premium in the DB
   def set_role_to_premium
-    update_attribute('role',1)
+    update(role: 1)
   end
 
   # Note that 0 represents standard in the DB
   def set_role_to_standard
-    update_attribute('role',0)
+    update(role: 0)
   end
 end
