@@ -1,0 +1,7 @@
+<% @wikis.each do |wiki| %>
+  <% if ( wiki.user_id != current_user.id ) %>
+    <h5 class="media-heading">
+      <%= link_to wiki.title, wiki %>
+    </h5>
+  <% end %>
+<% end %>

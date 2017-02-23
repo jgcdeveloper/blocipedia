@@ -4,6 +4,8 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.all
+    @my_public_wikis = current_user.wikis.where(private: false)
+    @my_premium_wikis = current_user.wikis.where(private: true)
   end
 
   def show
@@ -19,7 +21,7 @@ class WikisController < ApplicationController
     @user = current_user
     @wiki = @user.wikis.new(wiki_parameters)
     authorize @wiki
-  
+
     if @wiki.save
       flash[:notice] = wiki_instantiate_confirmed
       redirect_to @wiki

@@ -1,12 +1,15 @@
 <% if user.role == "admin" %>
   <h3>Board Administrator</h3>
+
   <p>Admin Dashboard Link (to be implimented)</p>
 <% elsif user.role == "premium" %>
   <h3>Premium Account Holder</h3>
+
   <p>
     Can't Handle the Pressure - Downgrade to Standard <br>
     Please note that any of your private wikis not deleted *WILL* be set to public!
   </p>
+
   <%= button_to "Downgrade", users_downgrade_path,
     :class => "downgrade-button",
     method: :post, data: {:confirm => "Please confirm downgrade! This cannot be reversed"} %>
