@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   include ApplicationHelper
 
+  #before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Prevent CSRF attacks by raising an exception.
@@ -13,5 +14,14 @@ class ApplicationController < ActionController::Base
     policy_name = exception.policy.class.to_s.underscore
     flash[:alert] = t "#{policy_name}.#{exception.query}", scope: 'pundit', default: :default
     redirect_to(request.referrer || wikis_path)
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    # Sanitizer for Devise Account Signup
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    # Sanitizer for Devise Account Edit
+    devise_parameter_sanitizer.permit(:account_update, keys:[:name])
   end
 end

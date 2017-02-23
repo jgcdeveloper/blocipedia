@@ -11,14 +11,15 @@ class WikisController < ApplicationController
   end
 
   def new
-    @wiki = Wiki.new
+    @user = current_user
+    @wiki = @user.wikis.new
   end
 
   def create
-    @wiki = Wiki.new(wiki_parameters)
+    @user = current_user
+    @wiki = @user.wikis.new(wiki_parameters)
     authorize @wiki
-    set_new_wiki_user
-
+  
     if @wiki.save
       flash[:notice] = wiki_instantiate_confirmed
       redirect_to @wiki
@@ -62,10 +63,6 @@ class WikisController < ApplicationController
 
   def wiki_parameters
     params.require(:wiki).permit(:title, :body, :private)
-  end
-
-  def set_new_wiki_user
-    @wiki.user = current_user
   end
 
   # Messages for our alerts

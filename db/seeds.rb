@@ -2,7 +2,7 @@
 
 puts "Seeding Users"
 
-10.times do
+5.times do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
@@ -27,5 +27,5 @@ puts "Seeding Wikis"
 end
 
 puts "Seeding Finished!"
-puts "#{User.count} users seeded (including 1 admin)"
+puts "#{User.count} users seeded"
 puts "#{Wiki.count} wikis seeded"

@@ -8,4 +8,12 @@ FactoryGirl.define do
     confirmed_at Date.today
     role 0
   end
+
+  trait :premium_user do
+    role 1
+  end
+
+  trait :admin_user do
+    role 2
+  end
 end
