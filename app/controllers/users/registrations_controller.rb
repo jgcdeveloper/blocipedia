@@ -9,8 +9,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def downgrade_posts
-    current_user.wikis.all.each do |wiki|
-      wiki.update(private: false)
-    end
+    current_user.wikis.update_all(private: false)
   end
 end
