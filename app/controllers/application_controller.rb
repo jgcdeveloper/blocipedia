@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   include ApplicationHelper
 
-  # before_action :configure_permitted_parameters, if: :devise_controller?
+  before_filter :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Prevent CSRF attacks by raising an exception.

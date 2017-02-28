@@ -3,7 +3,7 @@ class WikisController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @wikis = Wiki.all
+    @wikis = Wiki.order("updated_at DESC")
     @my_public_wikis = current_user.wikis.where(private: false)
     @my_premium_wikis = current_user.wikis.where(private: true)
   end
