@@ -31,4 +31,7 @@ class User < ActiveRecord::Base
   def set_role_to_standard
     update(role: 0)
   end
+
+  # This will downgrade posts
+  def downgrade_posts; end
 end

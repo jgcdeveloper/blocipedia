@@ -1,13 +1,23 @@
 <h1>Wiki Index</h1>
 <div class="row media">
   <div class="col-md-11 media-body">
-    <% @wikis.each do |wiki| %>
-      <h5 class="media-heading">
-        <%= link_to wiki.title, wiki %>
-      </h5>
+    <% unless @my_premium_wikis.empty? %>
+      <h4 class="premium-wikis-title"> Your Premium Wikis </h4>
+      <%= render partial: 'premium_wikis' %>
+    <% end %>
+
+    <% unless @my_public_wikis.empty? %>
+      <h4 class="personal-wikis-title"> Your Public Wikis </h4>
+      <%= render partial: 'personal_wikis'%>
+    <% end %>
+
+    <% unless @wikis.empty? %>
+      <h4 class="public-wikis-title"> Public Wikis </h4>
+      <%= render partial: 'public_wikis' %>
     <% end %>
   </div>
+
   <div class="col-md-1">
-    <%= render partial: 'new_button', locals: { wiki: @wiki } %>
+    <%= render partial: 'new_button' %>
   </div>
 </div>

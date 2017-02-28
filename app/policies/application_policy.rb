@@ -1,6 +1,5 @@
 # This is the ApplicationPolicy for the Pundit Authorization Gem
 class ApplicationPolicy < Struct.new(:user, :record)
-
   def initialize(user, record)
     @user = user
     @record = record
