@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-11">
     <%= link_to "Return to Index", wikis_path %>
-    <p><br /><%= @wiki.body %></p>
+    <p><br /><%= markdown(@wiki.body) %></p>
   </div>
   <div class="col-md-1">
     <%= render partial: 'edit_button', locals: { wiki: @wiki } %>

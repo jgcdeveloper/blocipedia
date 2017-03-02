@@ -32,6 +32,4 @@ class User < ActiveRecord::Base
     update(role: 0)
   end
 
-  # This will downgrade posts
-  def downgrade_posts; end
 end

@@ -14,12 +14,12 @@ class ChargesController < ApplicationController
   def create
     @user = current_user
     # Create a stripe customer for our charge
-    customer = Stripe::Customer::create(
+    customer = Stripe::Customer.create(
       email: @user.email,
       card: params[:stripeToken]
     )
 
-    charge = Stripe::Charge::create(
+    charge = Stripe::Charge.create(
       customer: customer.id,
       amount: upgrade_cost,
       description: 'Premium Upgrade -> #{current_user.email}',

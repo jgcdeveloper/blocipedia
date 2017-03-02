@@ -8,4 +8,24 @@ module ApplicationHelper
       image_tag('black-diamond.png', size: '24x20')
     end
   end
+
+  def markdown(input)
+    options = {
+      filter_html:          true,
+      hard_wrap:            true,
+      fenced_code_blocks:   true,
+      space_after_headers:  true,
+    }
+
+    extensions = {
+      autolink:                       true,
+      superscript:                    true,
+      disable_indented_code_blocks:   true
+    }
+
+    renderer = Redcarpet::Render::HTML.new(options)
+    markdown = Redcarpet::Markdown.new(renderer, extensions)
+
+    markdown.render(input).html_safe
+  end
 end
