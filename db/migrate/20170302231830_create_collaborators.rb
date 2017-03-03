@@ -8,8 +8,7 @@ class CreateCollaborators < ActiveRecord::Migration
     end
 
     add_index :collaborators, :id, unique: true
-    add_index :collaborators, :user_id
-    add_index :collaborators, :wiki_id
+    add_index :collaborators, [:user_id, :wiki_id], :unique => true
 
   end
 end

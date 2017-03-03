@@ -21,8 +21,7 @@ ActiveRecord::Schema.define(version: 20170302231830) do
   end
 
   add_index "collaborators", ["id"], name: "index_collaborators_on_id", unique: true
-  add_index "collaborators", ["user_id"], name: "index_collaborators_on_user_id"
-  add_index "collaborators", ["wiki_id"], name: "index_collaborators_on_wiki_id"
+  add_index "collaborators", ["user_id", "wiki_id"], name: "index_collaborators_on_user_id_and_wiki_id", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
