@@ -21,7 +21,7 @@ puts "Seeding Wikis"
   Wiki.create!(
     title: Faker::Lorem.sentence(6),
     body: Faker::Lorem.paragraph(4),
-    user_id: users.sample.id,
+    creator_id: users.sample.id,
     private: false
   )
 end

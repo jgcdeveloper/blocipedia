@@ -14,7 +14,7 @@
 
       <div>
         <%if ( (type == "new") && ( current_user.premium? || current_user.admin? ) ) ||
-             ( (type == "edit") && ( current_user.premium? ) && (wiki.user_id == current_user.id) ) ||
+             ( (type == "edit") && ( current_user.premium? ) && (wiki.creator_id == current_user.id) ) ||
              ( (type == "edit") && current_user.admin?) %>
           <%= w.label :private do %>
             <%= w.check_box :private %> Private Wiki?

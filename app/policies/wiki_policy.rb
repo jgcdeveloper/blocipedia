@@ -39,6 +39,6 @@ class WikiPolicy < ApplicationPolicy
   # Currently admin roles and wiki owner have delete permission
   def destroy_eligable_roles
     @user.admin? ||
-      @wiki.user_id == @user.id
+      @wiki.creator_id == @user.id
   end
 end

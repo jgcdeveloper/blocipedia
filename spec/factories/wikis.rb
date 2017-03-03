@@ -4,6 +4,6 @@ FactoryGirl.define do
     title "A Test Wikipedia Title"
     body "This is a basic wikipedia entry"
     private false
-    user_id 1
+    creator_id 1
   end
 end

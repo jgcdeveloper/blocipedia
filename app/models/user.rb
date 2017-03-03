@@ -1,6 +1,6 @@
 # This will handle user info via the devise gem
 class User < ActiveRecord::Base
-  has_many :wikis, dependent: :destroy
+  has_many :wikis, foreign_key: "creator_id", dependent: :destroy
   after_initialize :set_role_to_standard, if: :new_record?
 
   # Include default devise modules. Others available are:

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Wiki, type: :model do
-  let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New wiki instance for tesing", private: false, user: nil) }
+  let(:my_wiki) { Wiki.create!(title: "New Test Wiki", body: "New wiki instance for tesing", private: false, creator_id: 1) }
 
   describe "wiki attributes" do
     it "has title, body, private and user attributes" do
-      expect(my_wiki).to have_attributes(title: "New Test Wiki", body: "New wiki instance for tesing", private: false, user: nil)
+      expect(my_wiki).to have_attributes(title: "New Test Wiki", body: "New wiki instance for tesing", private: false, creator_id: 1)
     end
 
     it { is_expected.to validate_presence_of(:title) }
