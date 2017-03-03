@@ -2,7 +2,7 @@
 
 puts "Seeding Users"
 
-2.times do
+5.times do
   User.create!(
     name: Faker::Name.name,
     email: Faker::Internet.email,
@@ -16,8 +16,8 @@ users = User.all
 
 puts "Seeding Wikis"
 
-# Create 20 Random Wikis.
-5.times do
+# Create 20 Random Wikis
+20.times do
   Wiki.create!(
     title: Faker::Lorem.sentence(6),
     body: Faker::Lorem.paragraph(4),
@@ -26,6 +26,19 @@ puts "Seeding Wikis"
   )
 end
 
+# Collect all the randomly seeded wikis
+wikis = Wiki.all
+
+# Create 10 Collaborations
+10.times do
+  Collaborator.create!(
+    user_id: users.sample.id,
+    wiki_id: wikis.sample.id
+  )
+end
+
+
 puts "Seeding Finished!"
 puts "#{User.count} users seeded"
 puts "#{Wiki.count} wikis seeded"
+puts "#{Collaborator.count} collaborations seeded"
