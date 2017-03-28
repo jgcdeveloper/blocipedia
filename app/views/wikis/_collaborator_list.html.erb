@@ -1,0 +1,5 @@
+<p> Wiki Collaborators:
+  <% collaborators.each do |collaborator| %>
+    <%= User.find(collaborator.user_id).name %>,
+  <% end %>
+</p>

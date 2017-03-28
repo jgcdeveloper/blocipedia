@@ -11,6 +11,11 @@
       <%= render partial: 'personal_wikis'%>
     <% end %>
 
+    <% unless @my_collaborations.empty? %>
+      <h4 class="collaboration-wikis-title"> Your Collaborations </h4>
+      <%= render partial: 'collaborated_wikis'%>
+    <% end %>
+
     <% unless @wikis.empty? %>
       <h4 class="public-wikis-title"> Public Wikis </h4>
       <%= render partial: 'public_wikis' %>

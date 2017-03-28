@@ -6,6 +6,7 @@ class WikisController < ApplicationController
     @wikis = Wiki.order("updated_at DESC")
     @my_public_wikis = current_user.wikis.where(private: false)
     @my_premium_wikis = current_user.wikis.where(private: true)
+    @my_collaborations = current_user.collaborations
   end
 
   def show
