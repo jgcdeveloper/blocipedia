@@ -62,6 +62,10 @@ class WikisController < ApplicationController
     end
   end
 
+  def collaborators
+    @wiki = Wiki.find(params[:id])
+  end
+
   private
 
   def wiki_parameters

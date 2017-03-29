@@ -1,0 +1,3 @@
+<% if wiki.private? && ( (current_user.id == wiki.creator_id) || current_user.admin? ) %>
+  <%= link_to "Manage Collaborators", collaborators_wiki_path(@wiki), class: 'btn btn-info' %>
+<% end %>
