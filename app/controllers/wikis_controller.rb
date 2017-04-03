@@ -1,6 +1,7 @@
 # This controller will redirect to login and handle our wiki CRUD methods
 class WikisController < ApplicationController
   before_action :authenticate_user!
+  helper_method :add_user
 
   def index
     @wikis = Wiki.order("updated_at DESC")
@@ -64,12 +65,17 @@ class WikisController < ApplicationController
 
   def collaborators
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.collaborators
   end
 
   private
 
   def wiki_parameters
     params.require(:wiki).permit(:title, :body, :private)
+  end
+
+  def modify_collaborator
+    params[:commit] == "Add User"
   end
 
   # Messages for our alerts

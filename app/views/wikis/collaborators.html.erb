@@ -1,3 +1,12 @@
-<%= render partial: 'collaborator_list', locals: {collaborators: @wiki.collaborators} %>
+<%= render partial: 'collaborator_list', locals: {collaborators: @collaborators} %>
 
-<%= link_to "Return to Wiki", :back %>
+<%= form_for :collaborator, method: "get" do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email, :size=>50 %>
+  <%= f.submit "Add User", class: "btn btn-success" %>
+  <%= f.submit "Remove User", class: "btn btn-danger" %>
+<% end %>
+
+<div class="return_to_wiki_link">
+  <%= link_to "Return to Wiki", :back %>
+</div>
